@@ -1,5 +1,5 @@
 # resourcespace/docker
-The official Docker image for ResourceSpace. Full build instructions can be found on our [Knowledge Base](https://www.resourcespace.com/knowledge-base/systemadmin/install_docker).
+A modification (for use on tecopi server) of the official Docker image for ResourceSpace. Full build instructions can be found on our [Knowledge Base](https://www.resourcespace.com/knowledge-base/systemadmin/install_docker).
 
 # Installation notes
 * Before building the Docker image, change the db.env file replacing the default "change-me" passwords to secure values.
