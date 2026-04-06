@@ -37,7 +37,7 @@ services:
     
     volumes:
       - filestore:/var/www/html/filestore
-      - ./config.php:/var/www/html/include/config.php
+      #- ./config.php:/var/www/html/include/config.php
     
     #Removed network and pors sections when changing to tailscale
     #networks:
