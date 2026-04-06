@@ -1,22 +1,55 @@
 services:
+
+  tailscale:
+    image: tailscale/tailscale:latest
+    container_name: tailscale-rs
+    hostname: itamix-rs
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=true
+      - TS_EXTRA_ARGS=--advertise-tags=tag:container
+    volumes:
+      - tailscale-data:/var/lib/tailscale
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    restart: unless-stopped
+    command: >
+      sh -c "
+        tailscaled &
+        sleep 5 &&
+        tailscale up --authkey=${TS_AUTHKEY} --hostname=itamix-rs &&
+        tailscale funnel 80
+      "
+
   resourcespace:
     build: .
-    container_name: resourcespace
+    #container_name: resourcespace
     restart: unless-stopped
     depends_on:
       - mariadb
+      - tailscale
+    
+    #Added line below for tailscale service
+    network_mode: service:tailscale  
+    ####
+    
     volumes:
       - filestore:/var/www/html/filestore
       - ./config.php:/var/www/html/include/config.php
-    networks:
-      - frontend
-      - backend
-    ports:
-      - "80:80"
+    
+    #Removed network and pors sections when changing to tailscale
+    #networks:
+    #  - frontend
+    # - backend
+    #ports:
+    #  - "80:80"
+    ####
 
   mariadb:
     image: mariadb
-    container_name: mariadb
+    #container_name: mariadb
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -29,9 +62,12 @@ services:
       - backend
 
 networks:
-  frontend:
+  #Removed line below for tailscale service
+  #frontend:
+  ####
   backend:
 
 volumes:
   mariadb:
   filestore:
+  tailscale-data:
