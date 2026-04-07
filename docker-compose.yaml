@@ -3,7 +3,7 @@ services:
   tailscale:
     image: tailscale/tailscale:latest
     container_name: tailscale-rs
-    hostname: itamix-rs
+    hostname: resourcespace
     environment:
       - TS_AUTHKEY=${TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
@@ -19,7 +19,7 @@ services:
       sh -c "
         tailscaled &
         sleep 5 &&
-        tailscale up --authkey=${TS_AUTHKEY} --hostname=itamix-rs &&
+        tailscale up --authkey=${TS_AUTHKEY} --hostname=resourcespace &&
         tailscale funnel 80
       "
 
