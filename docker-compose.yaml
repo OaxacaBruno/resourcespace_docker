@@ -37,6 +37,9 @@ services:
     network_mode: service:tailscale
     volumes:
       - filestore:/var/www/html/filestore
+      ##### Removed binding to ./config.php since RS will generate it on setup
+      # - ./config.php:/var/www/html/include/config.php
+      #####
     environment:
       RS_DB_HOST: ${RS_DB_HOST:-mariadb}
       RS_DB_NAME: ${MYSQL_DATABASE}
@@ -47,6 +50,7 @@ services:
     image: mariadb:${MARIADB_VERSION:-11}
     ##### Recommended removal of container_name to avoid conflicts if redeploying
     # container_name: mariadb
+    #####
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
