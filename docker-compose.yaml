@@ -23,7 +23,7 @@ services:
     command: >
       sh -c "
         tailscaled &
-        sleep 5 &&
+        sleep 3 &&
         tailscale up --authkey=${TS_AUTHKEY} --hostname=${TS_HOSTNAME:-resourcespace} ${TS_EXTRA_ARGS} --reset &&
         tailscale funnel ${TS_FUNNEL_PORT:-80}
       "
