@@ -3,6 +3,9 @@ version: "3.9"
 services:
   tailscale:
     image: tailscale/tailscale:latest
+    ##### Recommended removal of container_name to avoid conflicts if redeploying
+    # container_name: tailscale-rs
+    #####
     hostname: ${TS_HOSTNAME:-resourcespace}
     environment:
       TS_AUTHKEY: ${TS_AUTHKEY}
