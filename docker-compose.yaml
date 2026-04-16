@@ -27,6 +27,9 @@ services:
 
   resourcespace:
     build: .
+    ##### Recommended removal of container_name to avoid conflicts if redeploying
+    # container_name: resourcespace
+    #####
     restart: unless-stopped
     depends_on:
       - mariadb
@@ -42,6 +45,8 @@ services:
 
   mariadb:
     image: mariadb:${MARIADB_VERSION:-11}
+    ##### Recommended removal of container_name to avoid conflicts if redeploying
+    # container_name: mariadb
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
