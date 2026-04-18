@@ -39,10 +39,15 @@ services:
       - tailscale
     network_mode: service:tailscale
     volumes:
-      - filestore:/var/www/html/filestore
-      ##### Removed binding to ./config.php since RS will generate it on setup
-      # - ./config.php:/var/www/html/include/config.php
-      #####
+      - /opt/stacks/resourcespace/filestore:/var/www/html/filestore
+      
+      # Enable config.php mount below
+      # only after running installer on first deployment
+      # so ResourceSpace can generate the config
+      # that we copy out of the container into the file bound in the line below
+      # - /opt/stacks/resourcespace/config/config.php:/var/www/html/include/config.php
+      ###################################################
+      
     environment:
       RS_DB_HOST: ${RS_DB_HOST:-mariadb}
       RS_DB_NAME: ${MYSQL_DATABASE}
@@ -61,7 +66,7 @@ services:
       MYSQL_USER: ${MYSQL_USER:-rsuser}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - mariadb:/var/lib/mysql
+      - /opt/stacks/resourcespace/db:/var/lib/mysql
     networks:
       - backend
 
