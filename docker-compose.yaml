@@ -29,6 +29,7 @@ services:
       "
 
   resourcespace:
+    user: "33:33"
     build: .
     ##### Recommended removal of container_name to avoid conflicts if redeploying
     # container_name: resourcespace
@@ -55,6 +56,7 @@ services:
       RS_DB_PASS: ${MYSQL_PASSWORD}
 
   mariadb:
+    user: "999:999"
     image: mariadb:${MARIADB_VERSION:-11}
     ##### Recommended removal of container_name to avoid conflicts if redeploying
     # container_name: mariadb
