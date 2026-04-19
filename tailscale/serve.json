@@ -1,0 +1,11 @@
+{
+  "Web": {
+    "https://resourcespace": {
+      "Handlers": {
+        "/": {
+          "Proxy": "http://resourcespace:80"
+        }
+      }
+    }
+  }
+}
