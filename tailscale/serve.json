@@ -5,10 +5,10 @@
     }
   },
   "Web": {
-    "https://resourcespace": {
+    "https://arte": {
       "Handlers": {
         "/": {
-          "Proxy": "http://resourcespace:80"
+          "Proxy": "http://arte:80"
         }
       }
     }
