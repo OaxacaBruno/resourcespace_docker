@@ -12,6 +12,8 @@ services:
     volumes:
       - tailscale-data:/var/lib/tailscale
       - ./tailscale:/config
+    networks:
+      - internal
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
