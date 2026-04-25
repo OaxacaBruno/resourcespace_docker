@@ -8,7 +8,7 @@
     "https://arte": {
       "Handlers": {
         "/": {
-          "Proxy": "http://arte:80"
+          "Proxy": "http://resourcespace:80"
         }
       }
     }
