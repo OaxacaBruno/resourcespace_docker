@@ -27,6 +27,9 @@ services:
     volumes:
       - /opt/stacks/resourcespace/db:/var/lib/mysql
     restart: unless-stopped
+    ### does this config need a network definition?
+    # networks:
+    # - internal
 
   resourcespace:
     build: .
