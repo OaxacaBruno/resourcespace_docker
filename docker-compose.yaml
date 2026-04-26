@@ -11,7 +11,6 @@ services:
       - TS_SERVE_CONFIG=/config/serve.json
     volumes:
       - tailscale-data:/var/lib/tailscale
-      - ./tailscale:/config
       - ./tailscale/serve.json:/config/serve.json
     networks:
       - internal
