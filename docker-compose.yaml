@@ -13,7 +13,7 @@ services:
       
     volumes:
       - tailscale-data:/var/lib/tailscale
-      - ./tailscale:/config
+      - ./serve.json:/config/serve.json
     networks:
       - internal
     cap_add:
