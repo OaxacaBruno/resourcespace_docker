@@ -1,0 +1,16 @@
+{
+  "TCP": {
+    "443": {
+      "HTTPS": true
+    }
+  },
+  "Web": {
+    "https://arte": {
+      "Handlers": {
+        "/": {
+          "Proxy": "http://resourcespace:80"
+        }
+      }
+    }
+  }
+}
